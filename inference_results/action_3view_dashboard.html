@@ -368,7 +368,6 @@
       <div class="header-inner">
         <div>
           <h1>三视图逐帧对比</h1>
-          <div class="subtle" id="sourceLine">加载中</div>
         </div>
         <div class="legend">
           <span class="legend-item"><span class="swatch" style="background: var(--true)"></span>真实轨迹</span>
@@ -909,7 +908,6 @@
       const meanMae = state.rows.reduce((sum, row) => sum + row.mean_abs_error, 0) / state.rows.length;
       document.getElementById("meanMae").textContent = fmt(meanMae);
       document.getElementById("numSteps").textContent = String(state.rows.length);
-      document.getElementById("sourceLine").textContent = `${CSV_PATH} · image_0 shifted +1 frame · 3D view approximately aligned to image_0 perspective · ${state.rows.length} action steps`;
       document.getElementById("stepSlider").max = String(state.rows.length - 1);
       document.getElementById("stepSlider").addEventListener("input", (event) => {
         state.step = Number(event.target.value);
