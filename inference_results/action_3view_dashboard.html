@@ -91,6 +91,37 @@
       border-radius: 2px;
     }
 
+    .task-banner {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 18px 14px;
+    }
+
+    .task-inner {
+      border: 1px solid #cfd7cf;
+      background: #f9fbf7;
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .task-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .task-text {
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 740;
+      overflow-wrap: anywhere;
+    }
+
     main {
       max-width: 1500px;
       width: 100%;
@@ -310,9 +341,15 @@
 
     @media (max-width: 640px) {
       .header-inner,
+      .task-banner,
       main {
         padding-left: 10px;
         padding-right: 10px;
+      }
+
+      .task-inner {
+        grid-template-columns: 1fr;
+        gap: 4px;
       }
 
       .controls {
@@ -341,6 +378,12 @@
           <span class="legend-item"><span class="swatch" style="background: var(--axis-z)"></span>Z</span>
         </div>
       </div>
+      <div class="task-banner">
+        <div class="task-inner">
+          <div class="task-label">指令</div>
+          <div class="task-text" id="taskInstructionText">-</div>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -356,8 +399,7 @@
             </div>
           </div>
           <div class="view-foot">
-          <div id="imagePath" class="mono">-</div>
-          <div id="instructionText">-</div>
+            <div id="imagePath" class="mono">-</div>
           </div>
         </article>
 
@@ -791,7 +833,7 @@
       document.getElementById("frameImage").src = src;
       document.getElementById("imageStep").textContent = `action step ${row.step} -> image step ${imageRow.step}`;
       document.getElementById("imagePath").textContent = imageRow.image;
-      document.getElementById("instructionText").textContent = state.instruction;
+      document.getElementById("taskInstructionText").textContent = state.instruction;
     }
 
     function updatePoseText() {
